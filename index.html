@@ -183,31 +183,24 @@ submitButton.addEventListener("click", function() {
 
   axios({
   method: 'get',
-  url: 'https://history-tracking-app.vercel.app/v1/api/history',
+  url: 'https://history-tracking-app.vercel.app/v1/api/orders',
 headers:{
   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   'Access-Control-Allow-Origin': '*',
   'Content-Type': 'application/json'
 
 },
-headers: {
-              
-              },
   params:{
     apiKey:apiKey,
     secretKey:secretKey,
     paraPhrase:paraPhrase,
-    coinId:2,
-    groupType:"deposit",
-fromType:"spot",
-before:1659076670000,
-after:987952085712531457,
-limit:100,
+    symbol:btcusdt_spbl,
   }
 
 })
 .then(function (response) {
     let data = response.data
+    console.log(response.data);
           let table = document.getElementById("data-history");
           let row = table.insertRow();
           let cell1 = row.insertCell(0);
@@ -232,23 +225,12 @@ limit:100,
 
 
 },
-
-
   params:{
-    apiKey:apiKey,
-    secretKey:secretKey,
-    paraPhrase:paraPhrase,
-    coinId:2,
-    groupType:"deposit",
-fromType:"spot",
-before:1659076670000,
-after:987952085712531457,
-limit:100,
+    symbol:"IXTUSDT_SPBL"
   }
 
 })
 .then(function (response) {
-
           let data = response.data;
           let table = document.getElementById("data-transactionHistory");
           let row = table.insertRow();

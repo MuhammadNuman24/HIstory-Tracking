@@ -3,7 +3,7 @@
 const { SpotClient } = require("bitget-api");
 
 // client = api.client;
-const getOrderHistoryController = async (req, res) => {
+const getOrderController = async (req, res) => {
   const client = new SpotClient({
     apiKey: req.query.apiKey,
     apiSecret: req.query.secretKey,
@@ -13,21 +13,17 @@ const getOrderHistoryController = async (req, res) => {
 
   try {
     client
-      .getOrderHistory("IXTUSDT_SPBL", {
-        after: req.query.after,
-        before: req.query.before,
-        limit: req.query.limit,
-      })
-      .then((result) => {
-        res.send(result);
-        console.log("GET: OrderHistory", result);
+    .getOrder("IXTUSDT_SPBL", req.query.orderId, req.query.clientOrderId)
+    .then((result) => {
+      res.send(result);
+      console.log("GET: getOrders", result);
       })
       .catch((err) => {
-        console.error("ERROR: OrderHistory", err);
+        console.error("ERROR: getOrders", err);
         res.send(err);
       });
   } catch (error) {
     return res.status(400).json({ error: "Something went wrong" });
   }
 };
-module.exports = { getOrderHistoryController };
+module.exports = { getOrderController };
