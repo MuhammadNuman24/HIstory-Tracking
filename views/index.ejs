@@ -191,7 +191,6 @@ headers:{
 
 },
 headers: {
-              
               },
   params:{
     apiKey:apiKey,
@@ -208,6 +207,7 @@ limit:100,
 })
 .then(function (response) {
   console.log(response.json);
+  let data = response.data 
           let table = document.getElementById("data-history");
           let row = table.insertRow();
           let cell1 = row.insertCell(0);
