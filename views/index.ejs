@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,7 +9,7 @@
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  flex-direction: row;
+  flex-direction: column;
 }
 table {
   width: 100%;
@@ -19,11 +20,12 @@ table {
 }
 
 thead {
-  background-color: #333;
+  background-color: rgb(75, 174, 227);
   color: #fff;
+  padding: 10px;
 }
 
-th,
+
 td {
   padding: 3px;
   border: 1px solid #333;
@@ -32,8 +34,9 @@ td {
 }
 
 th {
-  background-color: #333;
+  background-color: rgb(11, 172, 231);
   color: #fff;
+  padding: 10px;
 }
 
 tr:nth-child(even) {
@@ -44,22 +47,12 @@ body {
   padding: 0;
 }
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-items: center;
+  text-align: center;
   padding: 20px;
-  background-color: #333;
+  background-color: rgb(11, 84, 153);
   color: #fff;
 }
-
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  margin-right: 20px;
-  font-size: 16px;
-  margin-left: 34px;
-}
-
 .logo {
   font-size: 20px;
   font-weight: bold;
@@ -85,7 +78,7 @@ h1 {
 
 .input-container {
   display: flex;
-  justify-content: center;
+  text-align: center;
   align-items: center;
   flex-direction: column;
   /* height: 100vh; */
@@ -93,7 +86,7 @@ h1 {
 }
 
 .input-field {
-  padding: 10px 20px;
+  padding: 10px 80px;
   font-size: 16px;
   margin: 20px;
   border-radius: 5px;
@@ -118,12 +111,7 @@ h1 {
    
 
         <nav class="navbar">
-            <div class="logo">GETBIT FETCH HISTORY</div>
-            <div>
-              <a href="#">Order History</a>
-              <a href="#">Transaction History</a>
-              <a href="#">Transfer History</a>
-            </div>
+            <div class="logo">BITGET HISTORY FETCHER</div>
           </nav>
 
  <div class="main-con">
@@ -191,9 +179,11 @@ submitButton.addEventListener("click", function() {
     return -1;
   }
   
+
+
   axios({
   method: 'get',
-  url: 'https://cheerful-bikini-ox.cyclic.app/v1/api/history',
+  url: 'https://history-tracking-app.vercel.app/v1/api/history',
 headers:{
   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   'Access-Control-Allow-Origin': '*',
@@ -217,7 +207,7 @@ limit:100,
 
 })
 .then(function (response) {
-          let data = response.data;
+  console.log(response.json);
           let table = document.getElementById("data-history");
           let row = table.insertRow();
           let cell1 = row.insertCell(0);
@@ -234,7 +224,7 @@ limit:100,
 
         axios({
   method: 'get',
-  url: 'https://cheerful-bikini-ox.cyclic.app/v1/api/transaction',
+  url: 'https://history-tracking-app.vercel.app/v1/api/transaction',
   headers:{
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   'Access-Control-Allow-Origin': '*',
@@ -258,6 +248,7 @@ limit:100,
 
 })
 .then(function (response) {
+
           let data = response.data;
           let table = document.getElementById("data-transactionHistory");
           let row = table.insertRow();
@@ -273,7 +264,7 @@ limit:100,
 // Transfer
 axios({
   method: 'get',
-  url: 'https://cheerful-bikini-ox.cyclic.app/v1/api/transfer',
+  url: 'https://history-tracking-app.vercel.app/v1/api/transfer',
   headers:{
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   'Access-Control-Allow-Origin': '*',

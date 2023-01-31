@@ -4,7 +4,7 @@ const cors=require('cors')
 app.use(cors())
 
 // Set Template Engine
-// app.set("view engine", "ejs");
+app.set("view engine", "ejs");
 
 app.use("/v1/api", require("./routes/history.routes"));
 
